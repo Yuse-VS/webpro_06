@@ -11,6 +11,7 @@ let station = [
   { id:4, code:"JE13", name:"幕張豊砂駅"},
   { id:5, code:"JE14", name:"海浜幕張駅"},
   { id:6, code:"JE05", name:"新浦安駅"},
+  { id:7, code:"JE11", name:"南船橋駅"},
 ];
 
 app.get("/keiyo", (req, res) => {
@@ -29,6 +30,19 @@ app.get("/keiyo_add", (req, res) => {
   station.push( newdata );
   //res.redirect('/public/keiyo_add.html');
   res.render('db1', { data: station });
+});
+
+let games = [
+  { id:1, title:"スーパーマリオブラザーズ", company:"任天堂"},
+  { id:2, title:"スマッシュブラザーズ", company:"任天堂"},
+  { id:3, title:"ファイナルファンタジー", company:"スクウェア・エニックス"},
+  { id:4, title:"モンスターハンター", company:"カプコン"},
+  { id:5, title:"アークナイツ", company:"Yostar"},
+  { id:6, title:"アークナイツ：エンドフィールド", company:"Hypergryph"},
+];
+
+app.get("/games", (req, res) => {
+  res.render('games', { data: games });
 });
 
 app.get("/hello1", (req, res) => {
