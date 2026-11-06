@@ -45,6 +45,16 @@ app.get("/games", (req, res) => {
   res.render('games', { data: games });
 });
 
+app.get("/games_add", (req, res) => {
+  let id = req.query.id;
+  let title = req.query.title;
+  let company = req.query.company;
+  let newdata = { id: id, title: title, company: company };
+  games.push( newdata );
+  // keiyo_add と同じく，追加後は一覧を表示する
+  res.render('games', { data: games });
+});
+
 app.get("/hello1", (req, res) => {
   const message1 = "Hello world";
   const message2 = "Bon jour";
