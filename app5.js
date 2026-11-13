@@ -39,6 +39,20 @@ const detail = station2[ number ];
 res.render('keiyo2_detail', {data: detail} );
 });
 
+app.get("/keiyo2_add", (req, res) => {
+  // id は既存データの最大値 + 1 を自動で割り当てる
+  let id = Math.max( 0, ...station2.map( s => s.id ) ) + 1;
+  let code = req.query.code;
+  let name = req.query.name;
+  let change = req.query.change;
+  // 数値の項目は Number() で文字列から数値に変換する
+  let passengers = Number( req.query.passengers );
+  let distance = Number( req.query.distance );
+  let newdata = { id: id, code: code, name: name, change: change, passengers: passengers, distance: distance };
+  station2.push( newdata );
+  res.render('keiyo2', {data: station2} );
+});
+
 app.get("/keiyo_add", (req, res) => {
   let id = req.query.id;
   let code = req.query.code;
