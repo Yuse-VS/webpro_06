@@ -7,7 +7,7 @@ REST APIの詳細は次回以降の授業内容に合わせて修正する．
 | No | システム名 | 対象 | URLの起点 |
 |-|-|-|-|
 | 1 | ゲーム管理システム | ゲームのタイトルと制作企業など | `/games` |
-| 2 | グラフィックボード管理システム | GPUの製品名や価格など | `/gpus` |
+| 2 | バルファルク武器一覧システム | MHXXにおけるバルファルク素材の武器 | `/valfalk` |
 | 3 | アニメ作品管理システム | アニメ作品の放送年や制作会社など | `/anime` |
 
 ## 共通の機能
@@ -22,7 +22,7 @@ REST APIの詳細は次回以降の授業内容に合わせて修正する．
 | 変更 | GET / POST | `/xxx/edit/:number`，`/xxx/update/:number` | 編集フォームを表示し，送信された内容でデータを書き換える |
 | 削除 | GET | `/xxx/delete/:number` | 指定したデータを削除する |
 
-※ `xxx` には `games`，`gpus`，`anime` が入る．`:number` は配列の添字．
+※ `xxx` には `games`，`valfalk`，`anime` が入る．`:number` は配列の添字．
 
 ## 共通のページ遷移図
 
@@ -71,33 +71,36 @@ ID，ゲーム名，制作企業
 
 ---
 
-## 2. グラフィックボード管理システム
+## 2. バルファルク武器一覧システム
 
-GPU（グラフィックボード）の製品名，メーカー，VRAM容量，価格，発売年を管理する．
+モンスターハンターダブルクロス（MHXX）に登場する天彗龍バルファルクの素材から作られる武器を，
+武器種ごとに管理する．
 
 ### スキーマ
 
 | 項目名 | 型 | 内容 |
 |-|-|-|
-| id | 数値 | 製品ID |
-| name | 文字列 | 製品名 |
-| maker | 文字列 | メーカー |
-| vram | 数値 | VRAM容量（GB） |
-| price | 数値 | 価格（円） |
-| year | 数値 | 発売年 |
+| id | 数値 | 武器ID |
+| name | 文字列 | 武器名 |
+| type | 文字列 | 武器種（大剣，太刀，片手剣など） |
+| rarity | 数値 | レア度 |
+| attack | 数値 | 攻撃力 |
+| affinity | 数値 | 会心率（%） |
+| element | 文字列 | 属性・状態異常（なしの場合は空文字） |
+| slots | 数値 | スロット数 |
 
 ### ページ一覧
 
 | ページ | リソース名 | テンプレート |
 |-|-|-|
-| 一覧 | `/gpus` | `views/gpus.ejs` |
-| 詳細 | `/gpus/:number` | `views/gpus_detail.ejs` |
-| 追加フォーム | `/gpus/create` | `views/gpus_new.ejs` |
-| 編集フォーム | `/gpus/edit/:number` | `views/gpus_edit.ejs` |
+| 一覧 | `/valfalk` | `views/valfalk.ejs` |
+| 詳細 | `/valfalk/:number` | `views/valfalk_detail.ejs` |
+| 追加フォーム | `/valfalk/create` | `views/valfalk_new.ejs` |
+| 編集フォーム | `/valfalk/edit/:number` | `views/valfalk_edit.ejs` |
 
 ### 一覧に表示する項目
 
-ID，製品名，価格
+ID，武器種，武器名，攻撃力
 
 ---
 
